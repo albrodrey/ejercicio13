@@ -25,4 +25,5 @@ pipeline {
                         echo "Quality"
                 }
              }
+    }
 }
