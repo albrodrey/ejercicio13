@@ -14,7 +14,7 @@ pipeline {
                      label "build"
                 }
                 steps {
-                        echo "Build"
+                        echo "Build y deploy"
                 }
              }
 	     stage('Quality') {
