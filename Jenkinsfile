@@ -17,7 +17,7 @@ pipeline {
 		 }
 		 stage('Build y deploy') {
 			agent {
-				 label "build" "deploy"
+				 label "build deploy"
 			}
 			steps {
 			   echo "Build y deploy"
