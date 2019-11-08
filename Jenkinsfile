@@ -17,10 +17,10 @@ pipeline {
 		 }
 		 stage('Build y deploy') {
 			agent {
-				 label "build deploy"
+				 label "deploy"
 			}
 			steps {
-			   echo "Build y deploy"
+			   echo "deploy"
 			   git 'https://github.com/albrodrey/Spring3MVC'
 			   bat 'mvn clean package'
 			   archiveArtifacts '**/*.war'
