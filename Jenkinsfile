@@ -13,6 +13,7 @@ pipeline {
 			   echo "Build"
 			   git 'https://github.com/albrodrey/Spring3MVC'
 			   bat 'mvn clean package'
+			   archiveArtifacts '**/*.war'
 			}
 		 }
 		 stage('Build y deploy') {
@@ -23,9 +24,8 @@ pipeline {
 			   echo "deploy"
 			   git 'https://github.com/albrodrey/Spring3MVC'
 			   bat 'mvn clean package'
-			   archiveArtifacts '**/*.war'
-				copyArtifacts filter: '**/*.war', fingerprintArtifacts: true, projectName: '13-Ejercicio-groovy', selector: lastSuccessful()
-				deploy adapters: [tomcat8(credentialsId: '0b110e49-bdbc-40ef-abfa-ef16e051b1dd', path: '', url: 'http://localhost:8082')], contextPath: null, onFailure: false, war: '**/*.war'
+			   copyArtifacts filter: '**/*.war', fingerprintArtifacts: true, projectName: '13-Ejercicio-groovy', selector: permalink('lastStableBuild')
+			   deploy adapters: [tomcat8(credentialsId: '0b110e49-bdbc-40ef-abfa-ef16e051b1dd', path: '', url: 'http://localhost:8082')], contextPath: null, onFailure: false, war: '**/*.war'
 			}
 		 }
 	     stage('Quality') {
